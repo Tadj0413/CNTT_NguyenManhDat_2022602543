@@ -1,0 +1,16 @@
+# Đánh giá Kết quả
+
+Dựa trên bảng kết quả và biểu đồ, ta có thể đưa ra các nhận xét sau:
+
+1. **Ảnh hưởng của Dữ liệu mất cân bằng**:
+   - Kỹ thuật **SMOTE** và **Random OverSampling** giúp mô hình học các biểu diễn của lớp minority (Fraud) tốt hơn, qua đó nâng cao **Recall** (độ thu hồi) một cách rõ rệt. Tuy nhiên, đánh đổi lại đối với một vài mô hình, **Precision** bị giảm do dự đoán nhầm (False Positives) nhiều hơn.
+   - Kỹ thuật **Random UnderSampling** giảm đáng kể thời gian training, nhưng hiệu năng thông thường kém hơn vì loại bỏ tỷ lệ lớn dữ liệu có giá trị từ đa số (Non-Fraud).
+
+2. **Khả năng của các Thuật toán**:
+   - **XGBoost** và **LightGBM** là 2 thuật toán Gradient Boosting hiện đại, ưu việt ở tốc độ huấn luyện cũng như thường cung cấp điểm **F1-score** tốt nhất trên tập dữ liệu này. Chúng thích nghi cực tốt với các tương tác của dữ liệu OverSample và SMOTE.
+   - **Random Forest** chống Overfitting khá tốt và thường đem lại độ ổn định cao, dù thời gian huấn luyện trên lượng dữ liệu lớn (như SMOTE/OverSampling) tương đối lâu hơn so với Gradient Boosting nếu không tinh chỉnh tham số hợp lý.
+
+3. **Kết luận áp dụng**:
+   - Trong bối cảnh của hệ thống phát hiện gian lận, không nên chỉ quan tâm đến `Accuracy` vì độ mất cân bằng lớp quá lớn.
+   - Cần tối ưu hoá **F1-score**, đặc biệt chú tâm đến sự thoả hiệp giữa **Precision** (giảm thiểu việc chặn nhầm thẻ) và **Recall** (tối đa phát hiện lừa đảo).
+   - Tổ hợp kết hợp tối ưu thường dành cho môi trường sản xuất có thể là **XGBoost/LightGBM + SMOTE/Original** vì khả năng cân bằng F1-score và thời gian chạy tốt.
