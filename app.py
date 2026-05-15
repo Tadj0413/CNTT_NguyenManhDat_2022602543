@@ -289,9 +289,10 @@ with tab2:
                             row_vals = X_transformed.toarray()[0]
                         else:
                             row_vals = np.array(X_transformed)[0]
-                            
+                        
                         if hasattr(classifier, 'feature_importances_'):
                             importances = classifier.feature_importances_
+                            # tính đóng góp feature = | giá trị feature * độ quan trọng feature | 
                             contributions = np.abs(row_vals * importances)
                             sum_contrib = np.sum(contributions)
                             
