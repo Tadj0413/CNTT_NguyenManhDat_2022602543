@@ -183,6 +183,10 @@ with tab2:
         true_labels = st.session_state['true_labels']
         
         st.markdown("---")
+        st.markdown("### Tổng Quan Dữ Liệu")
+        st.dataframe(df_display.describe(), use_container_width=True)
+
+        st.markdown("---")
         st.markdown("### Kết quả Phân Tích")
         threshold = st.slider("Ngưỡng phân loại (Threshold)", 0.01, 0.99, 0.50, 0.01)
         
@@ -274,7 +278,8 @@ with tab2:
             else:
                 st.info("Không có giao dịch nào thỏa mãn bộ lọc.")
                 selected_idx = None
-                    
+
+        # Hiển thị top 8 đặc trưng ảnh hưởng          
         with col_right:
             if 'selected_idx' in locals() and selected_idx is not None and model is not None:
                 try:
@@ -283,16 +288,20 @@ with tab2:
                     if hasattr(model, 'named_steps') and 'preprocessor' in model.named_steps and 'classifier' in model.named_steps:
                         preprocessor = model.named_steps['preprocessor']
                         classifier = model.named_steps['classifier']
-                        
+                        #Biến  time và amount thành 2 biến đã scale còn lại giữ nguyên v1-v28 
+                        # để tính đóng góp của từng đặc trưng vào dự đoán của mô hình
                         X_transformed = preprocessor.transform(single_X)
                         if hasattr(X_transformed, 'toarray'):
                             row_vals = X_transformed.toarray()[0]
                         else:
                             row_vals = np.array(X_transformed)[0]
-                        
+                        # row_vals làvector feature của giao dịch đã được scale
                         if hasattr(classifier, 'feature_importances_'):
                             importances = classifier.feature_importances_
+                            # feature_importances_ là vector độ quan trọng của từng feature được model sinh ra sau khi train
                             # tính đóng góp feature = | giá trị feature * độ quan trọng feature | 
+                            #row_vals chính là một mảng 1 chiều (1D numpy array) chứa các giá trị đặc trưng
+                            # của một giao dịch duy nhất sau khi đã được tiền xử lý (chuẩn hóa/scale).
                             contributions = np.abs(row_vals * importances)
                             sum_contrib = np.sum(contributions)
                             
