@@ -1,10 +1,5 @@
 # 💳 Hệ Thống Phát Hiện Gian Lận Thẻ Tín Dụng (Credit Card Fraud Detection System)
 
-> **Đề tài tốt nghiệp ngành Công nghệ thông tin**  
-> **Sinh viên thực hiện:** Nguyễn Mạnh Đạt  
-> **Mã số sinh viên:** 2022602543  
-> **Trường:** [Tên trường Đại học của bạn] (ví dụ: Đại học Công nghiệp Hà Nội)
-
 Hệ thống ứng dụng các mô hình học máy hiện đại (Machine Learning) kết hợp với các kỹ thuật xử lý mất cân bằng dữ liệu để phát hiện và cảnh báo các giao dịch gian lận thẻ tín dụng theo thời gian thực với độ chính xác cao.
 
 ---
@@ -27,7 +22,7 @@ Hệ thống ứng dụng các mô hình học máy hiện đại (Machine Learn
 
 ## 🛠️ Công Nghệ Sử Dụng
 
-- **Ngôn ngữ:** Python 3.10+
+- **Ngôn ngữ:** Python 3.10.11
 - **Giao diện người dùng:** Streamlit
 - **Xử lý & Phân tích dữ liệu:** Pandas, NumPy, SciPy
 - **Học máy & Xử lý mất cân bằng:** Scikit-Learn, Imbalanced-Learn, XGBoost, LightGBM
@@ -128,8 +123,4 @@ Sau khi chạy lệnh, Streamlit sẽ tự động mở trình duyệt mặc đ�
 - **Bước 3:** Nhấp nút **⚡ CHẠY PHÂN TÍCH**.
 - **Bước 4:** Sử dụng thanh trượt thay đổi ngưỡng (Threshold) phân loại và xem kết quả phân tích trực quan hóa, bao gồm cả đóng góp của từng đặc trưng đối với các giao dịch đáng ngờ!
 
----
 
-## 🎓 Giáo Viên Hướng Dẫn
-* **Thầy/Cô:** [Tên Giáo Viên Hướng Dẫn]
-* **Khoa:** Công Nghệ Thông Tin
